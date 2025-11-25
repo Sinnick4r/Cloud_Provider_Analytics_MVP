@@ -1,7 +1,7 @@
 
 # Cloud Provider Analytics - MVP Tecnico
 
-## Descripci�n del Proyecto
+## Descripcion del Proyecto
 
 Este repositorio contiene la implementacion tecnica de un pipeline de datos "end-to-end" basado en una Arquitectura Lambda para el an�lisis de proveedores de nube. El sistema ingesta logs de uso de recursos (streaming) y datos maestros de facturacion/CRM (batch) para generar m�tricas de FinOps (costos, uso y huella de carbono).
 
@@ -38,10 +38,11 @@ sus correspondintes .py
 │   ├── cassandra_utils.py # Conector nativo a AstraDB
 │   ├── cassandra_loader.py         # Carga de datos Gold a Cassandra
 │   └── cassandra_queries.py        # Consultas de negocio (CQL) para validacion
+├── documentacion/              # Trabajo anterior, diagramas, etc
 ├── notebook/                   # Notebooks de ejecucio (.ipynb) 
 ├── data/                       # (Ignorado en git) Espacio para el dataset            
 ├── cred-ejemplo.env.txt        # Plantilla de variables de entorno
-├── README.md                   # Documentaci�n del proyecto
+├── README.md                   # Documentacion del proyecto
 └── DECISION_LOG.md             # Log de decisiones
 ```
 
@@ -52,7 +53,7 @@ sus correspondintes .py
 *   **Streaming:** Consume eventos JSONL desde `landing/usage_events_stream`. Implementa `dropDuplicates` por `event_id` y `withWatermark` para manejar datos tardios y garantizar una ingesta "at-least-once" robusta.
 
 ### 2. Silver Layer (Calidad y Enriquecimiento)
-Realiza el join entre los eventos de uso y la dimensi�n de organizaciones. Se aplican reglas de calidad (Quality Gates):
+Realiza el join entre los eventos de uso y la dimension de organizaciones. Se aplican reglas de calidad (Quality Gates):
 *   Validacion de integridad referencial (`org_id`).
 *   Validacion de reglas de negocio (ej. `cost_usd_increment >= -0.01`).
 *   **Cuarentena:** Los registros invalidos se desvian a una tabla de cuarentena. .
@@ -68,8 +69,8 @@ Carga los datos agregados a AstraDB utilizando el driver de Python. La tabla `or
 ## Idempotencia y Manejo de Fallos
 
 El sistema garantiza consistencia ante re-ejecuciones mediante:
-1.  **Batch:** Escritura en modo `overwrite` (o partici�n din�mica) en capas Bronze/Silver.
-2.  **Streaming:** Uso de directorios de Checkpoint para recuperaci�n de estado.
+1.  **Batch:** Escritura en modo `overwrite`en capas Bronze/Silver.
+2.  **Streaming:** Uso de directorios de Checkpoint para recuperacion de estado.
 3.  **Cassandra:** Uso de `UPSERT` natural basado en la Primary Key compuesta.
 4.  **Cuarentena:** Se usa un left anti join contra el hist�rico de errores para evitar duplicados en reprocesos.
 
