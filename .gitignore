@@ -1,0 +1,12 @@
+# Seguridad (Ignorar credenciales reales)
+cred.env
+.env
+Cass-creds/
+secure-connect-*.zip
+
+# Datos (Ignorar datasets pesados y generados)
+data/
+datalake/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
