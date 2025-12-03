@@ -1,6 +1,6 @@
 # Seguridad (Ignorar credenciales reales)
-cred.env
 .env
+cred.env
 Cass-creds/
 secure-connect-*.zip
 
