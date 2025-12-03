@@ -1,6 +1,5 @@
 
-# Cloud Provider Analytics - MVP Tecnico
-
+# Cloud Provider Analytics - MVP FINAL
 ## Descripcion del Proyecto
 
 Este repositorio contiene la implementacion tecnica de un pipeline de datos "end-to-end" basado en una Arquitectura Lambda para el an�lisis de proveedores de nube. El sistema ingesta logs de uso de recursos (streaming) y datos maestros de facturacion/CRM (batch) para generar m�tricas de FinOps (costos, uso y huella de carbono).
@@ -58,10 +57,18 @@ Realiza el join entre los eventos de uso y la dimension de organizaciones. Se ap
 *   Validacion de reglas de negocio (ej. `cost_usd_increment >= -0.01`).
 *   **Cuarentena:** Los registros invalidos se desvian a una tabla de cuarentena. .
 
-### 3. Gold Layer (FinOps Mart)
-Genera el dataset agregado `org_daily_usage_by_service`.
-*   **categorias:** Organizacion, Servicio, Fecha.
-*   **metricas:** Costo total, Peticiones, Huella de Carbono, Costo por Peticion.
+### 3. Gold Layer 
+1. FinOps Mart (`org_daily_usage_by_service`)
+    *   **grano:** Organizacion, Servicio, Fecha.
+    *   **metricas:** Costo total, Peticiones, Huella de Carbono, Costo por Peticion.
+
+2.  Support Mart (`org_daily_support_metrics`)
+    *    **grano**: Organizacion, Fecha del Ticket.
+    *    **metricas**: Volumen de tickets, tickets criticos, SLA (Breaches), CSAT Promedio.
+
+3.  Product/GenAI Mart (`org_daily_genai_usage`)
+    *    **grano**: Organizacion, Servicio (Modelo), Fecha.
+    *    **metricas**: Costo de IA, Volumen de Uso (uso requests como proxy de tokens).
 
 ### 4. Serving Layer (Cassandra)
 Carga los datos agregados a AstraDB utilizando el driver de Python. La tabla `org_daily_usage_by_service` esta modelada bajo un enfoque "Query-First", utilizando `org_id` como Partition Key para optimizar las consultas de costos por cliente.
