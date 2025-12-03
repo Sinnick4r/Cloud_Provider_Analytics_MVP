@@ -6,6 +6,7 @@ secure-connect-*.zip
 
 # Datos (Ignorar datasets pesados y generados)
 data/
+old versions/
 datalake/
 __pycache__/
 *.pyc
