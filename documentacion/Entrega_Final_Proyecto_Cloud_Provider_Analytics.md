@@ -3121,8 +3121,6 @@ dest_path = zone_path(BRONZE_PATH, "usage_events")
 
 checkpoint_path = BRONZE_PATH / "_checkpoints" / "usage_events"
 
-  
-
 query = (
 
 df_bronze
