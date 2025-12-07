@@ -963,7 +963,6 @@ TOTAL REVENUE:   $17.61
 
 ```
 
-
 ## Limitaciones principales:
 
 -   El cálculo de Revenue se realiza en tiempo de consulta (On-the-fly) en lugar de pre-agregarse en un Mart físico, lo cual es aceptable para el volumen actual pero no escala bien
@@ -977,7 +976,6 @@ TOTAL REVENUE:   $17.61
 -   La métricas de GenAI agregan `requests` como proxy de tokens; el agregado explícito de `genai_tokens` queda pendiente
 
 -   Debido a las restricciones del entorno de Google Colab, la orquestación de tareas Batch y Streaming se simuló secuencialmente en un notebook. Un entorno productivo requeriría Cron/Apache Airflow para gestión de dependencias y reintentos.
-
 
 
 ## Trabajo futuro propuesto:
