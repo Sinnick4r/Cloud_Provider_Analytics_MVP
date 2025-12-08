@@ -13,7 +13,7 @@
 
 -  **Título del proyecto:** Cloud Provider Analytics: Plataforma de Inteligencia de Costos y Operaciones
 
--  **Integrantes:** [Completar con Nombres]
+-  **Integrante:** Emilio Gomez Lencina
 
   
   
