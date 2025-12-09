@@ -4,16 +4,13 @@
 
 ---
 
-  
-
 
 -  **Título del proyecto:** Cloud Provider Analytics: Plataforma de Inteligencia de Costos y Operaciones
 
--  **Integrantes:** Emilio Gomez Lencina
+-  **Integrante:** Emilio Gomez Lencina
 
   
   
-
 ## Resumen Ejecutivo
 
   
@@ -958,6 +955,11 @@ TOTAL REVENUE:   $17.61
    2025-07-24   | compute         | 0.0005
 
 ```
+## Video:
+
+
+El video de presentacion puede ser visto [aca](https://drive.google.com/file/d/1cD0HdqhHUNYBM4rgsK5XNQXFb_9lddwQ/view?usp=sharing)
+
 
 ## Limitaciones principales:
 
